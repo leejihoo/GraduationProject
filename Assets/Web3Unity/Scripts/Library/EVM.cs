@@ -305,7 +305,7 @@ public static async Task<List<MintedNFT.Response>> GetMintedNFT(string _chain, s
         WWWForm form = new WWWForm();
         form.AddField("chain", _chain);
         form.AddField("network", _network);
-        form.AddField("account", _account);
+        form.AddField("account", _account); 
         form.AddField("contract", _contract);
         form.AddField("first", _first);
         form.AddField("skip", _skip);

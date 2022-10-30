@@ -8,11 +8,11 @@ public class ERC721BalanceOfExample : MonoBehaviour
     async void Start()
     {
         string chain = "ethereum";
-        string network = "mainnet";
-        string contract = "0x60f80121c31a0d46b5279700f9df786054aa5ee5";
-        string account = "0x6b2be2106a7e883f282e2ea8e203f516ec5b77f7";
+        string network = "goerli";
+        string contract = "0x94f3f1dab5325d96bc39cd14866d5ad755869fea";
+        string account = "0xFf7B4b56F3B43D7061Ded409eb5D86341DAD8a95";
 
         int balance = await ERC721.BalanceOf(chain, network, contract, account);
-        print(balance);
+        print("balance: " + balance);
     }
 }

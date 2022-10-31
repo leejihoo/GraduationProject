@@ -221,9 +221,9 @@ RectTransform:
   m_Father: {fileID: 1972095317}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -326}
+  m_AnchorMin: {x: 0.5, y: 0.20185186}
+  m_AnchorMax: {x: 0.5, y: 0.20185186}
+  m_AnchoredPosition: {x: -12, y: -4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674854058
@@ -439,9 +439,9 @@ RectTransform:
   m_Father: {fileID: 1972095317}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 141, y: -323}
+  m_AnchorMin: {x: 0.57143754, y: 0.20185186}
+  m_AnchorMax: {x: 0.57143754, y: 0.20185186}
+  m_AnchoredPosition: {x: 4, y: -1}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040306108
@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 1323670038}
   - component: {fileID: 1323670037}
   - component: {fileID: 1323670036}
+  - component: {fileID: 1323670039}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -559,9 +560,9 @@ RectTransform:
   m_Father: {fileID: 1972095317}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 660, y: 305}
+  m_AnchorMin: {x: 0.84239584, y: 0.7753333}
+  m_AnchorMax: {x: 0.84239584, y: 0.7753333}
+  m_AnchoredPosition: {x: 3, y: 8}
   m_SizeDelta: {x: 127, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1323670036
@@ -607,7 +608,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1323670037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1323670039}
+        m_TargetAssemblyTypeName: MoveScene, Assembly-CSharp
+        m_MethodName: MoveSceneTo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1323670037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +659,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323670034}
   m_CullTransparentMesh: 1
+--- !u!114 &1323670039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323670034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf8af032112ca848a40db20a2b87403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: LobbyScene
 --- !u!1 &1395760459
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,9 +780,9 @@ RectTransform:
   m_Father: {fileID: 1972095317}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -154, y: -328}
+  m_AnchorMin: {x: 0.416, y: 0.20185186}
+  m_AnchorMax: {x: 0.416, y: 0.20185186}
+  m_AnchoredPosition: {x: 7, y: -6}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568799484

@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Web3Unity/Scenes/WebLogin.unity
-    guid: a1b2001e782bb47659732d7e2bcdc35f
+    path: Assets/Scenes/StartScene.unity
+    guid: 4018f4ff8b962f2449b38d3c0ba7c14f
   - enabled: 1
-    path: Assets/Web3Unity/Scenes/TestScene.unity
-    guid: 9b1ac2fe35c2a034c96e6b62521ff441
+    path: Assets/Scenes/LobbyScene.unity
+    guid: 3b7d9611bb3013044829a86cc8f7eb90
+  - enabled: 1
+    path: Assets/Scenes/InventoryScene.unity
+    guid: fee6f6a6d33dcc846a311f10876d3d56
+  - enabled: 1
+    path: Assets/Scenes/RecruitementScene.unity
+    guid: 5e6dbf39696857a47a17be232e551480
+  - enabled: 1
+    path: Assets/Scenes/StageScene.unity
+    guid: 351743cbb6cf7cc4f910fd5b55bffdce
   m_configObjects: {}

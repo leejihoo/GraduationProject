@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0d825e3a6c5b14fb39d399b901448838
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - ROKAF Slab Serif
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 458fd0cad104e44118b655d2d452a873, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

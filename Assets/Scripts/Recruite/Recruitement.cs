@@ -9,8 +9,7 @@ using System.Threading;
 public class Recruitement : MonoBehaviour
 {
 	public Text Result;
-	public Text CallResult;
-	public Text SearchResult;
+
 	async public void Recruit()
 	{
 		// smart contract method to call
@@ -406,12 +405,28 @@ public class Recruitement : MonoBehaviour
 		{
 			string callResponse = await EVM.Call("ethereum", "goerli", contract, abi, method, args);
 			string response = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
+
+			string txStatus = await EVM.TxStatus("ethereum", "goerli", response);
+			
+			while(txStatus != "success")
+            {
+				if(txStatus == "fail")
+                {
+					Result.text = "Fail";
+					break;
+                }
+
+				Result.text = "pedding... Wait Please";
+				txStatus = await EVM.TxStatus("ethereum", "goerli", response);
+			}
+
+			Result.text = "success";
+
 			string searchResponse = await EVM.Call("ethereum", "goerli", contract, abi, "searchDNA", $"[\"{int.Parse(callResponse)}\"]");
 
 			Debug.Log(response);
-			CallResult.text = callResponse;
-			Result.text = response;
-			SearchResult.text = searchResponse;
+
+
 		}
 		catch (Exception e)
 		{

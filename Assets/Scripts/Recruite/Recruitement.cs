@@ -406,13 +406,6 @@ public class Recruitement : MonoBehaviour
 		{
 			string callResponse = await EVM.Call("ethereum", "goerli", contract, abi, method, args);
 			string response = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
-			
-			string txStatus = await EVM.TxStatus("ethereum", "goerli", response);
-			while(txStatus != "success")
-            {
-				txStatus = await EVM.TxStatus("ethereum", "goerli", response);
-			}
-
 			string searchResponse = await EVM.Call("ethereum", "goerli", contract, abi, "searchDNA", $"[\"{int.Parse(callResponse)}\"]");
 
 			Debug.Log(response);

@@ -11,7 +11,6 @@ contract Gundog is ERC721Enumerable {
     Counters.Counter private _tokenIds;
     uint randomDNA;
     uint [] GundogDNAs; 
-    event Created(uint256 newItemId, uint DNA);
     constructor() ERC721("Gundog", "GDG") {}
 
     function createDog(address player) public returns (uint256){
@@ -21,7 +20,6 @@ contract Gundog is ERC721Enumerable {
         randomDNA = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, newItemId))) % 10000;
         GundogDNAs.push(randomDNA);
         _tokenIds.increment();
-        emit Created(newItemId,GundogDNAs[newItemId]);
         return newItemId;
     }
 

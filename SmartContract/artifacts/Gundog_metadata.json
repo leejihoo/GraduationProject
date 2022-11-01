@@ -64,6 +64,25 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newItemId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "DNA",
+						"type": "uint256"
+					}
+				],
+				"name": "Created",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "from",
@@ -608,11 +627,11 @@
 			]
 		},
 		"Gundog.sol": {
-			"keccak256": "0x6ad6b0957ab96baf7c255319030090dac4cd5d577257b0cd198e254fd6f5e730",
+			"keccak256": "0x6b5317461c1f79b15006e69137d413a9e44af3f90eff42fa25e2587cdb6a2627",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://88c358019f3ec050bfdbe2cb1a33ce09f323b5649c3ea4cdf83278b01fa7b35c",
-				"dweb:/ipfs/QmXM3BfRv38meDedt28kcKdQu8P6nVQJhe7EC8RyvCzH4v"
+				"bzz-raw://a928b712b75fa9da775d491eba616b8a8bd987468151bf5471461f80d58816b7",
+				"dweb:/ipfs/QmcJ4ee9dZc9Cu7KjPAtDEZcDgYwbkQuvwYuFmAVVKSQL1"
 			]
 		}
 	},

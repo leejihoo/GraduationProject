@@ -2581,6 +2581,7 @@ MonoBehaviour:
   CurrentTokenOrder: {fileID: 362534150}
   LoadingResult: {fileID: 841606661}
   LoadingImage: {fileID: 1516409039}
+  InputAddress: {fileID: 908139086}
   GugDogDNAs: []
   _PresentToAddress: 
 --- !u!4 &1799833786

@@ -25,6 +25,7 @@ public class NftManager : MonoBehaviour
 	public Text CurrentTokenOrder;
 	public Text LoadingResult;
 	public Image LoadingImage;
+	public TMP_InputField InputAddress;
 
 	public List<string> GugDogDNAs;
 	private int _currentTokenOrder;
@@ -59,6 +60,7 @@ public class NftManager : MonoBehaviour
     private void Update()
     {
 		UpdateInventoryUI();
+		_PresentToAddress = InputAddress.text;
 	}
 
     async public void AddDNAs(int balance)
@@ -970,7 +972,9 @@ public class NftManager : MonoBehaviour
 		string args = $"[\"{PlayerPrefs.GetString("Account")}\",\"{_currentTokenOrder}\"]";
 		// connects to user's browser wallet to call a transaction
 		string response = await EVM.Call(chain, network, contract, abi, method, args);
-
+		
+		//string temptAddress = "0x0436480c30fbda970D620BcaBFd0aCB4fCB5669f";
+		
 		args = $"[\"{PlayerPrefs.GetString("Account")}\",\"{_PresentToAddress}\",\"{int.Parse(response)}\"]";
 		//args = $"[\"{PlayerPrefs.GetString("Account")}\",\"0x0436480c30fbda970D620BcaBFd0aCB4fCB5669f\",\"{int.Parse(response)}\"]";
 		string PresentTransaction = await Web3GL.SendContract("transferFrom", abi, contract, args, "0", "", "");
@@ -1075,8 +1079,8 @@ public class NftManager : MonoBehaviour
 	public void MetaMaskAddressChange(TextMeshProUGUI text)
     {
 		
-		_PresentToAddress = text.text;
-
+		//_PresentToAddress = text.text;
+		
 	}
 
 	async public void BalanceOfGundogToken()

@@ -5,10 +5,24 @@ using System;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using System.Threading;
+using UnityEngine.Experimental.U2D.Animation;
+using System.Linq;
 
 public class Recruitement : MonoBehaviour
 {
 	public Text Result;
+
+	[SerializeField]
+	private SpriteLibrary spriteLibrary = default;
+
+	[SerializeField]
+	private SpriteResolver[] targetResolver = default;
+
+	[SerializeField]
+	private string[] TargetCategory = default;
+
+	private SpriteLibraryAsset LibraryAsset => spriteLibrary.spriteLibraryAsset;
+	// Start is called before the first frame update
 
 	async public void Recruit()
 	{
@@ -407,7 +421,9 @@ public class Recruitement : MonoBehaviour
 			string response = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
 
 			string txStatus = await EVM.TxStatus("ethereum", "goerli", response);
-			
+			int randomValue;
+
+
 			while(txStatus != "success")
             {
 				if(txStatus == "fail")
@@ -416,14 +432,19 @@ public class Recruitement : MonoBehaviour
 					break;
                 }
 
+				randomValue = UnityEngine.Random.Range(0, 10000);
+				SelectRandom(randomValue.ToString());
+
 				Result.text = "pedding... Wait Please";
 				txStatus = await EVM.TxStatus("ethereum", "goerli", response);
 			}
 
-			Result.text = "success";
+			
 
 			string searchResponse = await EVM.Call("ethereum", "goerli", contract, abi, "searchDNA", $"[\"{int.Parse(callResponse)}\"]");
 
+			SelectRandom(searchResponse);
+			Result.text = searchResponse;
 			Debug.Log(response);
 
 
@@ -436,6 +457,48 @@ public class Recruitement : MonoBehaviour
 
 	}
 
-	
+	public void SelectRandom(string GundogDNA)
+	{
+		int index = 0;
+			
+		while (GundogDNA.Length <= 3)
+        {
+			GundogDNA = "0" + GundogDNA;
+        }
+
+		for (int i = 0; i < TargetCategory.Length; i++)
+		{
+			string[] labels =
+			LibraryAsset.GetCategoryLabelNames(TargetCategory[i]).ToArray();
+
+			switch (GundogDNA[i])
+			{
+				case '0':
+				case '1':
+				case '2':
+					index = 0;
+					break;
+				case '3':
+				case '4':
+				case '5':
+					index = 1;
+					break;
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+					index = 2;
+					break;
+			}
+
+			string label = labels[index];
+
+			targetResolver[i].SetCategoryAndLabel(TargetCategory[i], label);
+		}
+
+
+	}
+
+
 
 }

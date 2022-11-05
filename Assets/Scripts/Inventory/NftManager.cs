@@ -33,6 +33,8 @@ public class NftManager : MonoBehaviour
 
 	[SerializeField]
 	private string _PresentToAddress;
+	[SerializeField]
+	private GameObject _charater;
 
     public NftManager()
     {
@@ -54,13 +56,16 @@ public class NftManager : MonoBehaviour
 
 		AddDNAs(balance);
 
-
 	}
 
     private void Update()
     {
-		UpdateInventoryUI();
-		_PresentToAddress = InputAddress.text;
+        if (_charater.activeSelf)
+        {
+			UpdateInventoryUI();
+			_PresentToAddress = InputAddress.text;
+		}
+
 	}
 
     async public void AddDNAs(int balance)
@@ -522,6 +527,7 @@ public class NftManager : MonoBehaviour
 			GugDogDNAs.Add(response);
 		}
 
+		_charater.SetActive(true);
 	}
 
 	async public void PresentToken()
@@ -988,7 +994,7 @@ public class NftManager : MonoBehaviour
 		{
 			if (LoadingImage.fillAmount < 1)
             {
-				LoadingImage.fillAmount += 0.1f;
+				LoadingImage.fillAmount += 0.3f;
 			}
             else
             {
@@ -1093,5 +1099,11 @@ public class NftManager : MonoBehaviour
 		_totalTokenNumber = balance;
 
 		//AddDNAs(_totalTokenNumber);
+	}
+
+	public void SaveDNA()
+    {
+		PlayerPrefs.SetString("DNA", GugDogDNAs[_currentTokenOrder]); 
+
 	}
 }

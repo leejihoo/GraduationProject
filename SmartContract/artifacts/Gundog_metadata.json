@@ -497,7 +497,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Gundog.sol": "Gundog"
+			"SmartContract/Gundog.sol": "Gundog"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -607,7 +607,7 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"Gundog.sol": {
+		"SmartContract/Gundog.sol": {
 			"keccak256": "0x6ad6b0957ab96baf7c255319030090dac4cd5d577257b0cd198e254fd6f5e730",
 			"license": "MIT",
 			"urls": [

@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf8af032112ca848a40db20a2b87403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Stage1
+  sceneName: Stage1
 --- !u!1 &755279880
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf8af032112ca848a40db20a2b87403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: LobbyScene
+  sceneName: 
 --- !u!114 &755279883
 MonoBehaviour:
   m_ObjectHideFlags: 0

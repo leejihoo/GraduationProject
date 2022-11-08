@@ -1,35 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using UnityEngine.UI;
-using System.Threading.Tasks;
-using System.Threading;
-using UnityEngine.Experimental.U2D.Animation;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.Experimental.U2D.Animation;
+using UnityEngine.UI;
 
-public class Recruitement : MonoBehaviour
+namespace Recruit
 {
-	public Text Result;
-
-	[SerializeField]
-	private SpriteLibrary spriteLibrary = default;
-
-	[SerializeField]
-	private SpriteResolver[] targetResolver = default;
-
-	[SerializeField]
-	private string[] TargetCategory = default;
-
-	private SpriteLibraryAsset LibraryAsset => spriteLibrary.spriteLibraryAsset;
-	// Start is called before the first frame update
-
-	async public void Recruit()
+	public class Recruitement : MonoBehaviour
 	{
-		// smart contract method to call
-		string method = "createDog";
-		// abi in json format
-		string abi = @"[
+		public Text result;
+
+		[SerializeField]
+		private SpriteLibrary spriteLibrary = default;
+
+		[SerializeField]
+		private SpriteResolver[] targetResolver = default;
+
+		[SerializeField]
+		private string[] targetCategory = default;
+
+		private SpriteLibraryAsset LibraryAsset => spriteLibrary.spriteLibraryAsset;
+		
+		public async void Recruit()
+		{
+			#region SmartContractInfo
+
+			// smart contract method to call
+			string method = "createDog";
+			// abi in json format
+			string abi = @"[
 	{
 			""inputs"": [],
 		""stateMutability"": ""nonpayable"",
@@ -404,101 +403,93 @@ public class Recruitement : MonoBehaviour
 		""type"": ""function""
 	}
 ]";
-		// address of contract
-		string contract = "0x83827fc421496f04c3688363429eb73395cadf7e";
-		// array of arguments for contract
-		string args = $"[\"{PlayerPrefs.GetString("Account")}\"]";
-		// value in wei
-		string value = "0";
-		// gas limit OPTIONAL
-		string gasLimit = "";
-		// gas price OPTIONAL
-		string gasPrice = "";
-		// connects to user's browser wallet (metamask) to update contract state
-		try
-		{
-			string callResponse = await EVM.Call("ethereum", "goerli", contract, abi, method, args);
-			string response = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
+			// address of contract
+			string contract = "0x83827fc421496f04c3688363429eb73395cadf7e";
+			// array of arguments for contract
+			string args = $"[\"{PlayerPrefs.GetString("Account")}\"]";
+			// value in wei
+			string value = "0";
+			// gas limit OPTIONAL
+			string gasLimit = "";
+			// gas price OPTIONAL
+			string gasPrice = "";
+			// connects to user's browser wallet (metamask) to update contract state
 
-			string txStatus = await EVM.TxStatus("ethereum", "goerli", response);
-			int randomValue;
-
-
-			while(txStatus != "success")
-            {
-				if(txStatus == "fail")
-                {
-					Result.text = "Fail";
-					break;
-                }
-
-				randomValue = UnityEngine.Random.Range(0, 10000);
-				SelectRandom(randomValue.ToString());
-
-				Result.text = "pedding... Wait Please";
-				txStatus = await EVM.TxStatus("ethereum", "goerli", response);
-			}
-
+			#endregion
 			
-
-			string searchResponse = await EVM.Call("ethereum", "goerli", contract, abi, "searchDNA", $"[\"{int.Parse(callResponse)}\"]");
-
-			SelectRandom(searchResponse);
-			Result.text = searchResponse;
-			Debug.Log(response);
-
-
-		}
-		catch (Exception e)
-		{
-			Debug.LogException(e, this);
-			Result.text = "FAIL";
-		}
-
-	}
-
-	public void SelectRandom(string GundogDNA)
-	{
-		int index = 0;
-			
-		while (GundogDNA.Length <= 3)
-        {
-			GundogDNA = "0" + GundogDNA;
-        }
-
-		for (int i = 0; i < TargetCategory.Length; i++)
-		{
-			string[] labels =
-			LibraryAsset.GetCategoryLabelNames(TargetCategory[i]).ToArray();
-
-			switch (GundogDNA[i])
+			try
 			{
-				case '0':
-				case '1':
-				case '2':
-					index = 0;
-					break;
-				case '3':
-				case '4':
-				case '5':
-					index = 1;
-					break;
-				case '6':
-				case '7':
-				case '8':
-				case '9':
-					index = 2;
-					break;
+				string callResponse = await EVM.Call("ethereum", "goerli", contract, abi, method, args);
+				string response = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
+				string txStatus = await EVM.TxStatus("ethereum", "goerli", response);
+
+				while(txStatus != "success")
+				{
+					if(txStatus == "fail")
+					{
+						result.text = "Fail";
+						break;
+					}
+
+					int randomValue = UnityEngine.Random.Range(0, 10000);
+
+					SelectRandom(randomValue.ToString());
+
+					result.text = "pedding... Wait Please";
+					txStatus = await EVM.TxStatus("ethereum", "goerli", response);
+				}
+
+				string searchResponse = await EVM.Call("ethereum", "goerli", contract, abi, "searchDNA", $"[\"{int.Parse(callResponse)}\"]");
+
+				SelectRandom(searchResponse);
+				result.text = searchResponse;
+				Debug.Log(response);
+			}
+			catch (Exception e)
+			{
+				Debug.LogException(e, this);
+				result.text = "Ffail";
 			}
 
-			string label = labels[index];
-
-			targetResolver[i].SetCategoryAndLabel(TargetCategory[i], label);
 		}
 
+		private void SelectRandom(string gundogDna)
+		{
+			int index = 0;
+			
+			while (gundogDna.Length <= 3)
+			{
+				gundogDna = "0" + gundogDna;
+			}
 
+			for (int i = 0; i < targetCategory.Length; i++)
+			{
+				string[] labels = LibraryAsset.GetCategoryLabelNames(targetCategory[i]).ToArray();
+
+				switch (gundogDna[i])
+				{
+					case '0':
+					case '1':
+					case '2':
+						index = 0;
+						break;
+					case '3':
+					case '4':
+					case '5':
+						index = 1;
+						break;
+					case '6':
+					case '7':
+					case '8':
+					case '9':
+						index = 2;
+						break;
+				}
+
+				string label = labels[index];
+
+				targetResolver[i].SetCategoryAndLabel(targetCategory[i], label);
+			}
+		}
 	}
-
-
-
 }

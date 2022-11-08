@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 362534151}
   - component: {fileID: 362534150}
   m_Layer: 5
-  m_Name: CurrentTokenOrder
+  m_Name: CurrentTokenIndexText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 698177253}
   - component: {fileID: 698177256}
   m_Layer: 5
-  m_Name: PresentButton
+  m_Name: OpenPanelForPresentionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,7 +1034,7 @@ GameObject:
   - component: {fileID: 873913557}
   - component: {fileID: 873913556}
   m_Layer: 6
-  m_Name: Canvas
+  m_Name: CanvasAboveCharater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1222,19 +1222,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1799833785}
-        m_TargetAssemblyTypeName: NftManager, Assembly-CSharp
-        m_MethodName: MetaMaskAddressChange
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1940792449}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1252,19 +1240,7 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1799833785}
-        m_TargetAssemblyTypeName: NftManager, Assembly-CSharp
-        m_MethodName: MetaMaskAddressChange
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1940792449}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2287,7 +2263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8343349783722766269, guid: 2cf2e0c3fea23d34d99df4f19ee81e5c, type: 3}
       propertyPath: m_Name
-      value: character1
+      value: RandomCharacterSprites
       objectReference: {fileID: 0}
     - target: {fileID: -8343349783722766269, guid: 2cf2e0c3fea23d34d99df4f19ee81e5c, type: 3}
       propertyPath: m_IsActive
@@ -2408,7 +2384,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9166980250536203291, guid: 2cf2e0c3fea23d34d99df4f19ee81e5c, type: 3}
   m_PrefabInstance: {fileID: 1533385512}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711126694}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
@@ -2570,7 +2546,7 @@ GameObject:
   - component: {fileID: 1583860352}
   - component: {fileID: 1583860351}
   m_Layer: 5
-  m_Name: DnaTitle
+  m_Name: DnaTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2717,11 +2693,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710497195}
   m_CullTransparentMesh: 1
---- !u!1 &1711126694 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8343349783722766269, guid: 2cf2e0c3fea23d34d99df4f19ee81e5c, type: 3}
-  m_PrefabInstance: {fileID: 1533385512}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1711126695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6380146612076191576, guid: 2cf2e0c3fea23d34d99df4f19ee81e5c, type: 3}
@@ -2738,7 +2709,7 @@ GameObject:
   - component: {fileID: 1799833786}
   - component: {fileID: 1799833785}
   m_Layer: 0
-  m_Name: NFTmanager
+  m_Name: NftManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2756,25 +2727,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de90d89481f6d045a24ef269b032547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunDogDnaText: {fileID: 0}
+  currentTokenIndexText: {fileID: 0}
+  loadingResultText: {fileID: 0}
+  loadingImage: {fileID: 0}
+  addressInputField: {fileID: 0}
+  gunDogDnas: []
   spriteLibrary: {fileID: 1565477006}
   targetResolver:
   - {fileID: 1533385514}
   - {fileID: 1533385515}
   - {fileID: 1533385516}
   - {fileID: 1533385513}
-  TargetCategory:
-  - face
-  - cloak
-  - body
-  - leg
-  GunDogDnaText: {fileID: 267268663}
-  CurrentTokenOrder: {fileID: 362534150}
-  LoadingResult: {fileID: 841606661}
-  LoadingImage: {fileID: 1516409039}
-  InputAddress: {fileID: 908139086}
-  GugDogDNAs: []
-  _PresentToAddress: 
-  _charater: {fileID: 1711126694}
+  targetCategory: []
+  presentToAddress: 
+  charater: {fileID: 0}
 --- !u!4 &1799833786
 Transform:
   m_ObjectHideFlags: 0

@@ -10,41 +10,37 @@ using TMPro;
 
 public class NftManager : MonoBehaviour
 {
+	public Text gunDogDnaText;
+	public Text currentTokenIndexText;
+	public Text loadingResultText;
+	public Image loadingImage;
+	public TMP_InputField addressInputField;
+	public List<string> gunDogDnas;
+	
 	[SerializeField]
 	private SpriteLibrary spriteLibrary = default;
-
 	[SerializeField]
 	private SpriteResolver[] targetResolver = default;
-
 	[SerializeField]
-	private string[] TargetCategory = default;
-
+	private string[] targetCategory = default;
+	[SerializeField]
+	private string presentToAddress;
+	[SerializeField]
+	private GameObject charater;
+	
 	private SpriteLibraryAsset LibraryAsset => spriteLibrary.spriteLibraryAsset;
-
-	public Text GunDogDnaText;
-	public Text CurrentTokenOrder;
-	public Text LoadingResult;
-	public Image LoadingImage;
-	public TMP_InputField InputAddress;
-
-	public List<string> GugDogDNAs;
 	private int _currentTokenOrder;
 	private int _totalTokenNumber;
-
-	[SerializeField]
-	private string _PresentToAddress;
-	[SerializeField]
-	private GameObject _charater;
-
+	
     public NftManager()
     {
-        GugDogDNAs = new List<string>();
+        gunDogDnas = new List<string>();
 		_currentTokenOrder = 0;
 		_totalTokenNumber = 0;
 	}
 
     // Start is called before the first frame update
-    async private void Start()
+    private async void Start()
     {
 
 		string chain = "ethereum";
@@ -54,32 +50,33 @@ public class NftManager : MonoBehaviour
 		int balance = await ERC721.BalanceOf(chain, network, contract, account);
 		_totalTokenNumber = balance;
 
-		AddDNAs(balance);
-
-	}
+		AddDnas(balance);
+    }
 
     private void Update()
     {
-        if (_charater.activeSelf)
+        if (charater.activeSelf)
         {
 			UpdateInventoryUI();
-			_PresentToAddress = InputAddress.text;
+			presentToAddress = addressInputField.text;
 		}
 
 	}
 
-    async public void AddDNAs(int balance)
+    private async void AddDnas(int balance)
 	{
 
 		#region ContractInfo
+		// address of contract
+		const string contract = "0x83827fc421496f04c3688363429eb73395cadf7e";
 		// set chain: ethereum, moonbeam, polygon etc
-		string chain = "ethereum";
+		const string chain = "ethereum";
 		// set network mainnet, testnet
-		string network = "goerli";
+		const string network = "goerli";
 		// smart contract method to call
-		string method = "tokenOfOwnerByIndex";
+		const string method = "tokenOfOwnerByIndex";
 		// abi in json format
-		string abi = @"[
+		const string abi = @"[
 	{
 		""inputs"": [],
 		""stateMutability"": ""nonpayable"",
@@ -511,12 +508,6 @@ public class NftManager : MonoBehaviour
 	}
 ]";
 		#endregion
-
-		// address of contract
-		string contract = "0x83827fc421496f04c3688363429eb73395cadf7e";
-		// array of arguments for contract
-
-		//GugDogDNAs.Clear();
 
 		for (int i = 0; i < balance; i++)
         {
@@ -524,23 +515,25 @@ public class NftManager : MonoBehaviour
 			// connects to user's browser wallet to call a transaction
 			string response = await EVM.Call(chain, network, contract, abi, method, args);
 			response = await EVM.Call(chain, network, contract, abi, "searchDNA", $"[\"{response}\"]");
-			GugDogDNAs.Add(response);
+			gunDogDnas.Add(response);
 		}
 
-		_charater.SetActive(true);
+		charater.SetActive(true);
 	}
 
-	async public void PresentToken()
+    public async void PresentToken()
     {
 		#region ContractInfo
+		// address of contract
+		const string contract = "0x83827fc421496f04c3688363429eb73395cadf7e";
 		// set chain: ethereum, moonbeam, polygon etc
-		string chain = "ethereum";
+		const string chain = "ethereum";
 		// set network mainnet, testnet
-		string network = "goerli";
+		const string network = "goerli";
 		// smart contract method to call
-		string method = "tokenOfOwnerByIndex";
+		const string method = "tokenOfOwnerByIndex";
 		// abi in json format
-		string abi = @"[
+		const string abi = @"[
 	{
 		""inputs"": [],
 		""stateMutability"": ""nonpayable"",
@@ -972,52 +965,43 @@ public class NftManager : MonoBehaviour
 	}
 ]";
 		#endregion
-
-		// address of contract
-		string contract = "0x83827fc421496f04c3688363429eb73395cadf7e";
+		
 		string args = $"[\"{PlayerPrefs.GetString("Account")}\",\"{_currentTokenOrder}\"]";
 		// connects to user's browser wallet to call a transaction
 		string response = await EVM.Call(chain, network, contract, abi, method, args);
+
+		args = $"[\"{PlayerPrefs.GetString("Account")}\",\"{presentToAddress}\",\"{int.Parse(response)}\"]";
 		
-		//string temptAddress = "0x0436480c30fbda970D620BcaBFd0aCB4fCB5669f";
-		
-		args = $"[\"{PlayerPrefs.GetString("Account")}\",\"{_PresentToAddress}\",\"{int.Parse(response)}\"]";
-		//args = $"[\"{PlayerPrefs.GetString("Account")}\",\"0x0436480c30fbda970D620BcaBFd0aCB4fCB5669f\",\"{int.Parse(response)}\"]";
-		string PresentTransaction = await Web3GL.SendContract("transferFrom", abi, contract, args, "0", "", "");
+		string presentTransaction = await Web3GL.SendContract("transferFrom", abi, contract, args, "0", "", "");
+		string txStatus = await EVM.TxStatus("ethereum", "goerli", presentTransaction);
 
-
-		string txStatus = await EVM.TxStatus("ethereum", "goerli", PresentTransaction);
-
-		LoadingImage.gameObject.SetActive(true);
+		loadingImage.gameObject.SetActive(true);
 
 		while (txStatus != "success")
 		{
-			if (LoadingImage.fillAmount < 1)
+			if (loadingImage.fillAmount < 1)
             {
-				LoadingImage.fillAmount += 0.3f;
+				loadingImage.fillAmount += 0.3f;
 			}
             else
             {
-				LoadingImage.fillAmount = 0;
+				loadingImage.fillAmount = 0;
 			}
 
 			if (txStatus == "fail")
 			{
-				LoadingResult.text = "delivery failed";
+				loadingResultText.text = "delivery failed";
 				break;
 			}
 
-			LoadingResult.text = "delivering..";
-			txStatus = await EVM.TxStatus("ethereum", "goerli", PresentTransaction);
+			loadingResultText.text = "delivering..";
+			txStatus = await EVM.TxStatus("ethereum", "goerli", presentTransaction);
 		}
 
-		LoadingResult.text = "delivery complete!";
+		loadingResultText.text = "delivery complete!";
 
-		LoadingImage.gameObject.SetActive(false);
-		BalanceOfGundogToken();
-		AddDNAs(_totalTokenNumber);
-
-	}
+		loadingImage.gameObject.SetActive(false);
+    }
  
 	public void ClickRightMoveButton()
     {
@@ -1043,67 +1027,52 @@ public class NftManager : MonoBehaviour
 		}
 	}
 
-	public void UpdateInventoryUI()
+	private void UpdateInventoryUI()
     {
-		GunDogDnaText.text = GugDogDNAs[_currentTokenOrder];
-		CurrentTokenOrder.text = Convert.ToString(_currentTokenOrder + 1);
-		SelectRandom(GugDogDNAs[_currentTokenOrder]);
+		gunDogDnaText.text = gunDogDnas[_currentTokenOrder];
+		currentTokenIndexText.text = Convert.ToString(_currentTokenOrder + 1);
+		SelectRandom(gunDogDnas[_currentTokenOrder]);
 	}
 
-	public void SelectRandom(string GundogDNA)
+	private void SelectRandom(string gundogDna)
 	{
 		int index = 0;
-		if (GundogDNA.Length == 3)
-			GundogDNA = "0" + GundogDNA;
+		if (gundogDna.Length == 3)
+			gundogDna = "0" + gundogDna;
 
-		for(int i = 0; i < TargetCategory.Length; i++)
+		for(int i = 0; i < targetCategory.Length; i++)
         {
 			string[] labels =
-			LibraryAsset.GetCategoryLabelNames(TargetCategory[i]).ToArray();
+			LibraryAsset.GetCategoryLabelNames(targetCategory[i]).ToArray();
 
-            switch (GundogDNA[i])
+            switch (gundogDna[i])
             {
-				case '0': case '1': case '2':
+				case '0': 
+				case '1': 
+				case '2':
 					index = 0;
 					break;
-				case '3': case '4': case '5':
+				case '3': 
+				case '4': 
+				case '5':
 					index = 1;
 					break;
-				case '6': case '7': case '8': case '9':
+				case '6': 
+				case '7': 
+				case '8': 
+				case '9':
 					index = 2;
 					break;
             }
 
 			string label = labels[index];
 
-			targetResolver[i].SetCategoryAndLabel(TargetCategory[i], label);
+			targetResolver[i].SetCategoryAndLabel(targetCategory[i], label);
 		}
-
-
-	}
-
-	public void MetaMaskAddressChange(TextMeshProUGUI text)
-    {
-		
-		//_PresentToAddress = text.text;
-		
-	}
-
-	async public void BalanceOfGundogToken()
-    {
-		string chain = "ethereum";
-		string network = "goerli";
-		string contract = "0x83827fc421496f04c3688363429eb73395cadf7e";
-		string account = PlayerPrefs.GetString("Account");
-		int balance = await ERC721.BalanceOf(chain, network, contract, account);
-		_totalTokenNumber = balance;
-
-		//AddDNAs(_totalTokenNumber);
 	}
 
 	public void SaveDNA()
     {
-		PlayerPrefs.SetString("DNA", GugDogDNAs[_currentTokenOrder]); 
-
-	}
+		PlayerPrefs.SetString("DNA", gunDogDnas[_currentTokenOrder]);
+    }
 }

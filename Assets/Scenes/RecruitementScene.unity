@@ -281,18 +281,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a132b81dc692af24a95c0b4f08e7cd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Result: {fileID: 886850841}
+  result: {fileID: 886850841}
   spriteLibrary: {fileID: 370302052}
   targetResolver:
   - {fileID: 370302049}
   - {fileID: 370302050}
   - {fileID: 370302051}
   - {fileID: 370302048}
-  TargetCategory:
+  targetCategory:
   - face
   - cloak
   - body
   - leg
+  createDogFunction: {fileID: 11400000, guid: f51d8add6b69bed43a769b679fd80695, type: 2}
+  searchDnaCall: {fileID: 11400000, guid: c18170e24b7993344aacd6e5c49b6769, type: 2}
 --- !u!1 &76554775
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf8af032112ca848a40db20a2b87403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Stage1
+  sceneName: LobbyScene
 --- !u!1 &242782058
 GameObject:
   m_ObjectHideFlags: 0

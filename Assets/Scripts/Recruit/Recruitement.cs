@@ -9,19 +9,30 @@ namespace Recruit
 	public class Recruitement : MonoBehaviour
 	{
 		public Text result;
-
+		
 		[SerializeField] private SpriteLibrary spriteLibrary = default;
 		[SerializeField] private SpriteResolver[] targetResolver = default;
 		[SerializeField] private string[] targetCategory = default;
 		[SerializeField] private FunctionDataModel createDogFunction;
+		[SerializeField] private FunctionDataModel burnFunction;
 		[SerializeField] private CallDataModel searchDnaCall;
+		[SerializeField] private Text needCoinText;
 		
 		private SpriteLibraryAsset LibraryAsset => spriteLibrary.spriteLibraryAsset;
-		
+		private const int NeedCoin = 5;
+
+		public void Start()
+		{
+			needCoinText.text = NeedCoin.ToString();
+		}
+
 		public async void Recruit()
 		{
 			try
 			{
+				string temp = await Web3GL.SendContract(burnFunction.Method, burnFunction.Abi, 
+					burnFunction.ContractAddress, $"[\"{NeedCoin}\"]", burnFunction.Value, 
+					"", "");
 				string args = $"[\"{PlayerPrefs.GetString("Account")}\"]";
 				// 컨트렉트의 return을 반환한다. 새로운 토큰의 tokenId를 반환한다.
 				string callResponse = await EVM.Call("ethereum", "goerli", createDogFunction.ContractAddress, createDogFunction.Abi

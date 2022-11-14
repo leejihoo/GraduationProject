@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4533a7a0363a0334da007188c86141af, type: 3}
+  m_Name: BurnFunction
+  m_EditorClassIdentifier: 
+  method: burn
+  abi: "[ \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\":
+    \"initialSupply\", \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"stateMutability\":
+    \"nonpayable\", \t\t\"type\": \"constructor\" \t}, \t{ \t\t\"anonymous\": false,
+    \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"indexed\": true, \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"owner\", \t\t\t\t\"type\": \"address\" \t\t\t},
+    \t\t\t{ \t\t\t\t\"indexed\": true, \t\t\t\t\"internalType\": \"address\", \t\t\t\t\"name\":
+    \"spender\", \t\t\t\t\"type\": \"address\" \t\t\t}, \t\t\t{ \t\t\t\t\"indexed\":
+    false, \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\": \"value\", \t\t\t\t\"type\":
+    \"uint256\" \t\t\t} \t\t], \t\t\"name\": \"Approval\", \t\t\"type\": \"event\"
+    \t}, \t{ \t\t\"anonymous\": false, \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"indexed\":
+    true, \t\t\t\t\"internalType\": \"address\", \t\t\t\t\"name\": \"from\", \t\t\t\t\"type\":
+    \"address\" \t\t\t}, \t\t\t{ \t\t\t\t\"indexed\": true, \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"to\", \t\t\t\t\"type\": \"address\" \t\t\t},
+    \t\t\t{ \t\t\t\t\"indexed\": false, \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\":
+    \"value\", \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"name\": \"Transfer\",
+    \t\t\"type\": \"event\" \t}, \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"uint256\", \t\t\t\t\"name\": \"supply\", \t\t\t\t\"type\": \"uint256\" \t\t\t}
+    \t\t], \t\t\"name\": \"CreateGold\", \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"uint256\", \t\t\t\t\"name\": \"result\", \t\t\t\t\"type\": \"uint256\" \t\t\t}
+    \t\t], \t\t\"stateMutability\": \"nonpayable\", \t\t\"type\": \"function\" \t},
+    \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"address\", \t\t\t\t\"name\":
+    \"owner\", \t\t\t\t\"type\": \"address\" \t\t\t}, \t\t\t{ \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"spender\", \t\t\t\t\"type\": \"address\" \t\t\t}
+    \t\t], \t\t\"name\": \"allowance\", \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"uint256\", \t\t\t\t\"name\": \"\", \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t],
+    \t\t\"stateMutability\": \"view\", \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\":
+    [ \t\t\t{ \t\t\t\t\"internalType\": \"address\", \t\t\t\t\"name\": \"spender\",
+    \t\t\t\t\"type\": \"address\" \t\t\t}, \t\t\t{ \t\t\t\t\"internalType\": \"uint256\",
+    \t\t\t\t\"name\": \"amount\", \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"name\":
+    \"approve\", \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"bool\", \t\t\t\t\"name\":
+    \"\", \t\t\t\t\"type\": \"bool\" \t\t\t} \t\t], \t\t\"stateMutability\": \"nonpayable\",
+    \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"account\", \t\t\t\t\"type\": \"address\" \t\t\t}
+    \t\t], \t\t\"name\": \"balanceOf\", \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"uint256\", \t\t\t\t\"name\": \"\", \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t],
+    \t\t\"stateMutability\": \"view\", \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\":
+    [ \t\t\t{ \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\": \"amount\",
+    \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"name\": \"burn\", \t\t\"outputs\":
+    [], \t\t\"stateMutability\": \"nonpayable\", \t\t\"type\": \"function\" \t},
+    \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"address\", \t\t\t\t\"name\":
+    \"account\", \t\t\t\t\"type\": \"address\" \t\t\t}, \t\t\t{ \t\t\t\t\"internalType\":
+    \"uint256\", \t\t\t\t\"name\": \"amount\", \t\t\t\t\"type\": \"uint256\" \t\t\t}
+    \t\t], \t\t\"name\": \"burnFrom\", \t\t\"outputs\": [], \t\t\"stateMutability\":
+    \"nonpayable\", \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [], \t\t\"name\":
+    \"decimals\", \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"uint8\",
+    \t\t\t\t\"name\": \"\", \t\t\t\t\"type\": \"uint8\" \t\t\t} \t\t], \t\t\"stateMutability\":
+    \"view\", \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"spender\", \t\t\t\t\"type\": \"address\" \t\t\t},
+    \t\t\t{ \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\": \"subtractedValue\",
+    \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"name\": \"decreaseAllowance\",
+    \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"bool\", \t\t\t\t\"name\":
+    \"\", \t\t\t\t\"type\": \"bool\" \t\t\t} \t\t], \t\t\"stateMutability\": \"nonpayable\",
+    \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"spender\", \t\t\t\t\"type\": \"address\" \t\t\t},
+    \t\t\t{ \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\": \"addedValue\",
+    \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"name\": \"increaseAllowance\",
+    \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"bool\", \t\t\t\t\"name\":
+    \"\", \t\t\t\t\"type\": \"bool\" \t\t\t} \t\t], \t\t\"stateMutability\": \"nonpayable\",
+    \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [], \t\t\"name\": \"name\",
+    \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"string\", \t\t\t\t\"name\":
+    \"\", \t\t\t\t\"type\": \"string\" \t\t\t} \t\t], \t\t\"stateMutability\": \"view\",
+    \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [], \t\t\"name\": \"symbol\",
+    \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"string\", \t\t\t\t\"name\":
+    \"\", \t\t\t\t\"type\": \"string\" \t\t\t} \t\t], \t\t\"stateMutability\": \"view\",
+    \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [], \t\t\"name\": \"totalSupply\",
+    \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\":
+    \"\", \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"stateMutability\": \"view\",
+    \t\t\"type\": \"function\" \t}, \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"to\", \t\t\t\t\"type\": \"address\" \t\t\t},
+    \t\t\t{ \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\": \"amount\",
+    \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"name\": \"transfer\", \t\t\"outputs\":
+    [ \t\t\t{ \t\t\t\t\"internalType\": \"bool\", \t\t\t\t\"name\": \"\", \t\t\t\t\"type\":
+    \"bool\" \t\t\t} \t\t], \t\t\"stateMutability\": \"nonpayable\", \t\t\"type\":
+    \"function\" \t}, \t{ \t\t\"inputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"address\",
+    \t\t\t\t\"name\": \"from\", \t\t\t\t\"type\": \"address\" \t\t\t}, \t\t\t{ \t\t\t\t\"internalType\":
+    \"address\", \t\t\t\t\"name\": \"to\", \t\t\t\t\"type\": \"address\" \t\t\t},
+    \t\t\t{ \t\t\t\t\"internalType\": \"uint256\", \t\t\t\t\"name\": \"amount\",
+    \t\t\t\t\"type\": \"uint256\" \t\t\t} \t\t], \t\t\"name\": \"transferFrom\",
+    \t\t\"outputs\": [ \t\t\t{ \t\t\t\t\"internalType\": \"bool\", \t\t\t\t\"name\":
+    \"\", \t\t\t\t\"type\": \"bool\" \t\t\t} \t\t], \t\t\"stateMutability\": \"nonpayable\",
+    \t\t\"type\": \"function\" \t} ]"
+  contractAddress: 0x846B1fe4b3449e1D6ab79D016831C54a036f2735
+  args: 
+  value: 0
+  gasLimit: 
+  gasPrice: 

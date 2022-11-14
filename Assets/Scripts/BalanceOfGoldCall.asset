@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca3bdb2e2d81b1a48ad8e823677fc51b, type: 3}
-  m_Name: BalanceOfCall
+  m_Name: BalanceOfGoldCall
   m_EditorClassIdentifier: 
   chain: ethereum
   network: goerli
-  contractAddress: 0x83827fc421496f04c3688363429eb73395cadf7e
+  contractAddress: 0x846B1fe4b3449e1D6ab79D016831C54a036f2735
   abi: 
   method: 
   args: 
